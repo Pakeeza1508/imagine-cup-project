@@ -200,13 +200,13 @@ wanderly-trip-planner/
 
 ### 1. Environment Variables
 
-Set these in Netlify dashboard (Site Settings > Environment Variables):
+Set these in Netlify dashboard (Site Settings > Environment Variables). Keep all secrets only in env config, never in the repo:
 
 ```bash
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/
+MONGODB_URI=your_mongodb_connection_string
 MONGODB_DB=wanderlyDB
-GOOGLE_API_KEY=your_gemini_api_key
-OPENWEATHER_KEY=your_openweather_key
+GOOGLE_API_KEY=dummy_gemini_key
+OPENWEATHER_KEY=dummy_openweather_key
 ```
 
 ### 2. Deploy to Netlify
@@ -435,11 +435,12 @@ Your Wanderly Trip Planner MVP is **feature-complete** and ready for launch!
 9. ✅ MongoDB Integration
 
 **Next Steps:**
-1. Deploy to Netlify
-2. Seed the database
-3. Test all features using USER_GUIDE.md
-4. Share with users and gather feedback
-5. Monitor analytics and usage patterns
+1. Confirm environment variables are set in hosting (.env not committed)
+2. Deploy to Netlify
+3. Seed the database
+4. Test all features using USER_GUIDE.md
+5. Share with users and gather feedback
+6. Monitor analytics and usage patterns
 
 **Good luck with your launch! 🚀**
 
