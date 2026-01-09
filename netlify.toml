@@ -1,0 +1,11 @@
+[build]
+  command = ""
+  functions = "netlify/functions"
+  publish = "."
+
+[dev]
+  framework = "#static"
+
+# Scheduled function to check for price drops daily
+[functions."checkPriceDrops"]
+  schedule = "0 0 * * *"  # Run daily at midnight (UTC)
