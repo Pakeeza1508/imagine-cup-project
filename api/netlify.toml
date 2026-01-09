@@ -1,0 +1,34 @@
+functionsDirectory = "C:\\Users\\Pakeeza\\Desktop\\db-proj\\wanderly-trip-planner\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+plugins = []
+headers = []
+redirects = []
+
+[build]
+publish = "C:\\Users\\Pakeeza\\Desktop\\db-proj\\wanderly-trip-planner"
+publishOrigin = "config"
+functions = "C:\\Users\\Pakeeza\\Desktop\\db-proj\\wanderly-trip-planner\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[dev]
+framework = "#static"
+
+[functions]
+
+[functions.checkPriceDrops]
+schedule = "0 0 * * *"
+
+[functions."*"]
