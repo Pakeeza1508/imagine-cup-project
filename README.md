@@ -1,7 +1,8 @@
 # 🌍 Wanderly - AI Trip Planner
 
 **Wanderly** is a next-generation travel planning application that leverages the power of AI to create personalized, day-by-day itineraries for any destination in the world.
-LINK:- https://wanderly-ai.netlify.app/
+
+**Live (Azure Static Web Apps):** https://gentle-sea-09cc45f00.2.azurestaticapps.net
 
 ![Wanderly Banner](https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop)
 
@@ -47,8 +48,8 @@ LINK:- https://wanderly-ai.netlify.app/
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/wanderly-trip-planner.git
-    cd wanderly-trip-planner
+    git clone https://github.com/Pakeeza1508/imagine-cup-project.git
+    cd imagine-cup-project
     ```
 
 2.  **Install Netlify CLI** (Required for serverless functions)
@@ -66,7 +67,7 @@ LINK:- https://wanderly-ai.netlify.app/
 
 The budget search uses seeded city cost data, and currency conversion uses exchange rates stored in MongoDB.
 
-1.  Create a `.env` in the project root:
+1.  Create a `.env` in the project root (do **not** commit this file):
     ```bash
     MONGODB_URI=mongodb://localhost:27017
     MONGODB_DB=wanderly
@@ -87,32 +88,26 @@ If you see a message like "Cities already seeded", your database is ready.
    - Manual update: `POST` to `/.netlify/functions/updateExchangeRates` with JSON payload
    - Fetch current: `GET` `/.netlify/functions/getExchangeRates`
 
-## ☁️ Deployment
+## ☁️ Deployment (Azure Static Web Apps)
 
-This project is optimized for **Netlify**.
+This project now deploys via **Azure Static Web Apps** using the GitHub Actions workflow in `.github/workflows/azure-static-web-apps-gentle-sea-09cc45f00.yml`.
 
-1.  Drag and drop the project folder to [Netlify Drop](https://app.netlify.com/drop).
-2.  Go to **Site Settings > Environment Variables**. 
-3.  Add your API keys:
-    *   `GOOGLE_API_KEY`: Your Gemini API key
-    *   `OPENWEATHER_KEY`: Your OpenWeatherMap API key
-    *   `MONGODB_URI`: Your MongoDB connection string (Atlas recommended)
-    *   `MONGODB_DB`: Database name (e.g., `wanderly`)
-
-3.  After deploy, run these once (replace with your site domain):
-    - `https://<your-site>/.netlify/functions/seedCityCosts`
-    - `https://<your-site>/.netlify/functions/seedTrendingDestinations`
-    - `https://<your-site>/.netlify/functions/seedExchangeRates`
-    - `https://<your-site>/.netlify/functions/seedSeasonalEvents` (NEW)
-
-4.  **Enable Scheduled Functions** (for price drop alerts):
-    - In Netlify dashboard, ensure scheduled functions are enabled
-    - The `checkPriceDrops` function runs daily at midnight UTC
-    - Check logs: Site Settings > Functions > checkPriceDrops
+1. Push to `main` → GitHub Actions will build and publish to Azure Static Web Apps.
+2. In the Azure Static Web App resource, set environment variables (Configuration > Application settings):
+    * `GOOGLE_API_KEY`: Your Gemini API key
+    * `OPENWEATHER_KEY`: Your OpenWeatherMap API key
+    * `MONGODB_URI`: Your MongoDB connection string (Atlas recommended)
+    * `MONGODB_DB`: Database name (e.g., `wanderly`)
+3. After deployment, seed once using your production domain:
+    - `https://gentle-sea-09cc45f00.2.azurestaticapps.net/.netlify/functions/seedCityCosts`
+    - `https://gentle-sea-09cc45f00.2.azurestaticapps.net/.netlify/functions/seedTrendingDestinations`
+    - `https://gentle-sea-09cc45f00.2.azurestaticapps.net/.netlify/functions/seedExchangeRates`
+    - `https://gentle-sea-09cc45f00.2.azurestaticapps.net/.netlify/functions/seedSeasonalEvents`
+4. Scheduled price-drop checks: ensure the Azure Static Web Apps instance allows the scheduled Netlify-style function or run manually as needed.
 
 ## 🔒 Security
 
-This project uses **Netlify Functions** to proxy API requests. This ensures that your sensitive API keys are stored securely on the server side and are never exposed to the client browser.
+Serverless functions keep API keys server-side. Store secrets only in `.env` locally and in Azure Static Web Apps application settings in production; never commit them.
 
 ## 📄 License
 
